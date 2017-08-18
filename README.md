@@ -4,6 +4,19 @@ A Prawn PDF component which adds basic HTML support.
 
 **Important**: render HTML documents is not an easy task; only a small set of tags and attributes are supported and complex layouts will not render correctly; if you look for real HTML to PDF convertion please try other gems like WickedPDF
 
+Install with `gem install prawn-styled-text` or using bundler `gem 'prawn-styled-text'`
+
+## Examples
+
+```ruby
+require 'prawn-styled-text'
+pdf = Prawn::Document.new
+pdf.styled_text '<h1 style="text-align: center">Just a test</h1>'
+pdf.render_file 'test.pdf'
+```
+
+For more examples see this [folder](https://github.com/blocknotes/prawn-styled-text/tree/master/examples).
+
 ## Supported tags & attributes
 
 HTML tags:
@@ -20,21 +33,26 @@ HTML tags:
 - ul / li
 
 CSS attributes:
-- color (*only 6 hex digits format, # is ignored, ex. FFBB11*)
-- font-family
-- font-size (*units are ignored*)
-- font-style (*accepts list of values, ex. bold, italic*)
-- href (*tag a*)
-- letter-spacing
-- line-height (*as heading, units are ignored*)
-- margin-left (*units are ignored*)
-- margin-top (*units are ignored*)
-- src (*tag img*)
-- text-align
+- color (only 6 hex digits format, # is ignored - ex. `style="color: #FFBB11"`)
+- font-family (ex. `style="font: Courier"`)
+- font-size (units are ignored - ex. `style="font-size: 20px"`)
+- font-style (accepts list of values - ex. `style="font-style: bold, italic"`)
+- height (for *img* tag, ex. `<img src="test.jpg" style="width: 50%; height: 200"/>`)
+- href (for *a* tag, ex. `<a href="http://www.google.com/">Google</a>`)
+- letter-spacing (ex. `style="letter-spacing: 1.5"`)
+- line-height (heading, units are ignored - ex. `style="line-height: 10"`)
+- margin-left (units are ignored - ex. `style="margin-left: 15"`)
+- margin-top (units are ignored - ex. `style="margin-top: 20"`)
+- src (for *img* tag, ex. `<img src="test.jpg"/>`)
+- text-align (ex. `style="text-align: center"`)
+- width (for *img* tag, ex. `<img src="test.jpg" style="width: 50%; height: 200"/>`)
 
-## Examples
-
-See [examples](https://github.com/blocknotes/prawn-styled-text/tree/master/examples) folder.
+Olther attributes:
+- dash (for *hr* tag, ex. `<hr style="dash: 4"/>`)
+- image-position (for *img* tag, ex. `<img src="image.jpg" style="image-position: center" />`)
+- image-scale (for *img* tag, ex. `<img src="image.jpg" style="image-scale: 0.3" />`)
+- mode (ex. `<h3 style="mode: stroke">Stroke text</h3>`)
+- ul-symbol (for *ul* tag, ex. `<ul style="ul-symbol: -">`)
 
 ## Contributors
 

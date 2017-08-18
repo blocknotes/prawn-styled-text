@@ -17,10 +17,10 @@ This is <i style="color: #888888">italic</i>, <u>underline</u> and <b>bold, <i>b
 <ul>
   <li>Level 1a</li>
   <li>Level 1b
-    <ul style="margin-left: 8px; ul-symbol: +;">
+    <ul style="margin-left: 8px; list-symbol: '+ ';">
       <li>Level 2a</li>
       <li>Level 2b
-        <ul style="ul-symbol: -;">
+        <ul style="list-symbol: ''">
           <li>Level 3a</li>
           <li>Level 3b</li>
         </ul>
@@ -30,17 +30,18 @@ This is <i style="color: #888888">italic</i>, <u>underline</u> and <b>bold, <i>b
 </ul>
 <br/>
 
-Some HTML entities: &euro; &times; &divide; &half; &laquo; &raquo; &copy;<br/>
-
+Some HTML entities: &euro; &times; &divide; &half; &laquo; &raquo; &copy;
+<p>A paragraph</p><p>Another paragraph</p>
 <hr style="color: #FFBB11; dash: 1" />
 <br/>
 
-A span with a color: <span style="color: #4488CC">this is <span style="color: #ff0000; font-family: Courier; font-size: 20px">courier red 20</span>, this is <span style="color: #008800; font-style: bold, italic">green bold italic</span>, this is <span style="letter-spacing: 2">character spacing 2</span>, this is <a href="http://www.google.com">a Google link</a></span>
+A span with a color: <span style="color: #4488CC">this is <span style="color: #ff0000; font-family: 'Courier'; font-size: 20px">courier red 20</span>, this is <span style="color: #008800; font-style: bold, italic">green bold italic</span>, this is <span style="letter-spacing: 2">character spacing 2</span>, this is <a href="http://www.google.com">a Google link</a></span>
 <h3 style="mode: stroke">Stroke mode</h3>
-<div style="font-size: 14px; line-height: 12px; text-align: justify">line-height test... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+<div style="font-size: 14px; line-height: 12px; text-align: justify">line-height test... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod <em>tempor</em> incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure <strong>dolor</strong> in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
 <hr/>
 <br/>
 
 An image:
 <img src="image.jpg" style="width: 50%" />
+<!-- <img src="image.jpg" style="image-at: 100, 600" /> -->
 <!-- <img src="image.jpg" style="image-position: center; image-scale: 0.3" /> -->

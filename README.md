@@ -24,11 +24,14 @@ HTML tags:
 - b
 - br 
 - div
+- em
 - h1 - h6
 - hr
 - i
 - img
+- p
 - span
+- strong
 - u
 - ul / li
 
@@ -49,10 +52,13 @@ CSS attributes:
 
 Olther attributes:
 - dash (for *hr* tag, ex. `<hr style="dash: 4"/>`)
+- image-at (for *img* tag, origin (0, 0) is left bottom, ex. `<img src="image.jpg" style="image-at: 100, 600" />`)
 - image-position (for *img* tag, ex. `<img src="image.jpg" style="image-position: center" />`)
 - image-scale (for *img* tag, ex. `<img src="image.jpg" style="image-scale: 0.3" />`)
+- list-symbol (for *ul* tag, ex. `<ul style="list-symbol: -">`)
 - mode (ex. `<h3 style="mode: stroke">Stroke text</h3>`)
-- ul-symbol (for *ul* tag, ex. `<ul style="ul-symbol: -">`)
+
+See [Prawn documentation](https://github.com/prawnpdf/prawn-table#documentation) for PDF options details.
 
 ## Contributors
 

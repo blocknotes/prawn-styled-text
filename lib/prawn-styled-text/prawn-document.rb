@@ -21,7 +21,7 @@ Prawn::Document.class_eval do
           parts[-1][:text] = parts[-1][:text].rstrip
           parts.pop if parts[-1][:text].empty?
         end
-        # p '###', parts
+        # p '###', parts ### DEBUG
         if parts.any?
           parts[0][:text] = extra_options[:pre] + parts[0][:text] if extra_options[:pre]
           self.indent( extra_options[:margin_left] ) do
@@ -33,6 +33,7 @@ Prawn::Document.class_eval do
         extra_options = { margin_left: 0 }
       end
       options = context[:options]
+      # p '@@@', options ### DEBUG
       if type == :text_node
         # prepare options
         text_options[:align] = options[:'text-align'].to_sym if options[:'text-align']
@@ -63,19 +64,13 @@ Prawn::Document.class_eval do
           if options[:'image-at']
             xy = options[:'image-at'].split( ',' ).map &:to_i
             image_options[:at] = xy if xy.count == 2
-            # p image_options[:at]
           end
           if options[:'image-position']
             pos = options[:'image-position'].to_i
             image_options[:position] = pos > 0 ? pos : options[:'image-position']
           end
-          if options[:'width']
-            w = options[:'width'].to_i
-            if w > 0
-              image_options[:width] = options[:'width'].include?( '%' ) ? ( w * self.bounds.width * 0.01 ) : w
-            end
-          end
-          image_options[:height] = options[:'height'].to_i if options[:'height']
+          image_options[:width]  = options[:width]  if options[:width]
+          image_options[:height] = options[:height] if options[:height]
           self.image context[:src], image_options
         end
       end

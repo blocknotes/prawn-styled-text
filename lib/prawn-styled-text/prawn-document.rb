@@ -21,7 +21,6 @@ Prawn::Document.class_eval do
           parts[-1][:text] = parts[-1][:text].rstrip
           parts.pop if parts[-1][:text].empty?
         end
-        # p '###', parts ### DEBUG
         if parts.any?
           parts[0][:text] = extra_options[:pre] + parts[0][:text] if extra_options[:pre]
           self.indent( extra_options[:margin_left] ) do
@@ -33,9 +32,7 @@ Prawn::Document.class_eval do
         extra_options = { margin_left: 0 }
       end
       options = context[:options]
-      # p '@@@', options ### DEBUG
       if type == :text_node
-        # prepare options
         text_options[:align] = options[:'text-align'].to_sym if options[:'text-align']
         margin_top = options.delete( :'margin-top' ).to_i
         self.move_down( margin_top ) if margin_top > 0
@@ -44,13 +41,13 @@ Prawn::Document.class_eval do
         if !text_options[:leading] && ( leading = options.delete( :'line-height' ).to_i ) > 0
           text_options[:leading] = leading
         end
-        text_options[:mode] = options[:'mode'].to_sym if options[:'mode']
+        text_options[:mode] = options[:mode].to_sym if options[:mode]
         extra_options[:pre] = context[:pre] if context[:pre]
         parts << { text: text }.merge( options ) # push the data
       elsif type == :closing_tag
         self.formatted_text( context[:text] ) if context[:text]
         if context[:tag] == :hr
-          self.dash( options[:dash].to_i ) if options[:dash]
+          self.dash( options[:dash].include?( ',' ) ? options[:dash].split( ',' ).map( &:to_i ) : options[:dash].to_i ) if options[:dash]
           if options[:color]
             last_stroke_color = self.stroke_color
             self.stroke_color( options[:color] )

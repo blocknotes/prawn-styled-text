@@ -1,8 +1,10 @@
 require 'oga'
+require_relative 'callbacks'
 require_relative 'prawn-document'
 
 module PrawnStyledText
   BLOCK_TAGS = [ :br, :div, :h1, :h2, :h3, :h4, :h5, :h6, :hr, :li, :p, :ul ]
+  DEF_BG_MARK = 'ffff00'
   DEF_HEADING_T = 16
   DEF_HEADING_H = 8
   DEF_MARGIN_UL = 15
@@ -83,6 +85,7 @@ module PrawnStyledText
   def self.text_node( pdf, data )
     context = { pre: '', options: {} }
     styles = []
+    font_size = pdf.font_size
     data.each do |part|
       # Evalutate tag
       tag = part[:name]
@@ -92,6 +95,9 @@ module PrawnStyledText
         context[:options][:link] = link if link
       when :b, :strong # bold
         styles.push :bold
+      when :del, :s
+        @@strike_through ||= StrikeThroughCallback.new( pdf )
+        context[:options][:callback] = @@strike_through
       when :h1, :h2, :h3, :h4, :h5, :h6
         context[:options][:size] = HEADINGS[tag]
         context[:options][:'margin-top'] = DEF_HEADING_T
@@ -101,13 +107,24 @@ module PrawnStyledText
       when :li # list item
         context[:options][:'margin-left'] = @@margin_ul
         context[:pre] = @@symbol_ul.force_encoding( 'windows-1252' ).encode( 'UTF-8' )
-      when :u # underline
+      when :mark
+        @@highlight ||= HighlightCallback.new( pdf )
+        @@highlight.set_color nil
+        context[:options][:callback] = @@highlight
+      when :small
+        context[:options][:size] = font_size * 0.66
+      when :u, :ins # underline
         styles.push :underline
       end
       context[:options][:styles] = styles if styles.any?
       # Evalutate attributes
       attributes = part[:node].get 'style'
-      context[:options].merge!( adjust_values( pdf, attributes.scan( /\s*([^:]+):\s*([^;]+)[;]*/ ) ) ) if attributes
+      if attributes
+        values = adjust_values( pdf, attributes.scan( /\s*([^:]+):\s*([^;]+)[;]*/ ) )
+        @@highlight.set_color( values[:background].delete( '#' ) ) if tag == :mark && values[:background]
+        context[:options].merge! values
+      end
+      font_size = context[:options][:size] if font_size
     end
     context
   end

@@ -20,43 +20,50 @@ For more examples see this [folder](https://github.com/blocknotes/prawn-styled-t
 ## Supported tags & attributes
 
 HTML tags:
-- a
-- b
-- br 
-- div
-- em
-- h1 - h6
-- hr
-- i
-- img
-- p
-- span
-- strong
-- u
-- ul / li
+- **a**: link
+- **b**: bold
+- **br**: new line
+- **del**: strike-through
+- **div**: block element
+- **em**: italic
+- **h1** - **h6**: headings
+- **hr**: horizontal line
+- **i**: italic
+- **ins**: underline
+- **img**: image
+- **li**: list item
+- **mark**: highlight
+- **p**: block element
+- **s**: strike-through
+- **small**: smaller text
+- **span**: inline element
+- **strong**: bold
+- **u**: underline
+- **ul**: list
 
 CSS attributes:
-- color (only 6 hex digits format, # is ignored - ex. `style="color: #FFBB11"`)
-- font-family (ex. `style="font: Courier"`)
-- font-size (units are ignored - ex. `style="font-size: 20px"`)
-- font-style (accepts list of values - ex. `style="font-style: bold, italic"`)
-- height (for *img* tag, ex. `<img src="test.jpg" style="width: 50%; height: 200"/>`)
-- href (for *a* tag, ex. `<a href="http://www.google.com/">Google</a>`)
-- letter-spacing (ex. `style="letter-spacing: 1.5"`)
-- line-height (heading, units are ignored - ex. `style="line-height: 10"`)
-- margin-left (units are ignored - ex. `style="margin-left: 15"`)
-- margin-top (units are ignored - ex. `style="margin-top: 20"`)
-- src (for *img* tag, ex. `<img src="test.jpg"/>`)
-- text-align (ex. `style="text-align: center"`)
-- width (for *img* tag, ex. `<img src="test.jpg" style="width: 50%; height: 200"/>`)
+- **background**: for *mark* tag, only 6 hex digits format, # is ignored - ex. `style="background: #FFCC00"`
+- **color**: only 6 hex digits format, # is ignored - ex. `style="color: #FFBB11"`
+- **font-family**: font must be registered, quotes are optional, ex. `style="font: Courier"`
+- **font-size**: units are ignored - ex. `style="font-size: 20px"`
+- **font-style**: values: *:bold*, *:bold_italic*, *:italic*, *:normal*; string or comma separated strings - ex. `style="font-style: bold, italic"`
+- **height**: for *img* tag, ex. `<img src="test.jpg" style="width: 50%; height: 200"/>`
+- **href**: for *a* tag, ex. `<a href="http://www.google.com/">Google</a>`
+- **letter-spacing**: ex. `style="letter-spacing: 1.5"`
+- **line-height**: heading, units are ignored - ex. `style="line-height: 10"`
+- **margin-left**: units are ignored - ex. `style="margin-left: 15"`
+- **margin-top**: units are ignored - ex. `style="margin-top: 20"`
+- **src**: for *img* tag, ex. `<img src="test.jpg"/>`
+- **text-align**: ex. `style="text-align: center"`
+- **width**: for *img* tag, ex. `<img src="test.jpg" style="width: 50%; height: 200"/>`
 
 Olther attributes:
-- dash (for *hr* tag, ex. `<hr style="dash: 4"/>`)
-- image-at (for *img* tag, origin (0, 0) is left bottom, ex. `<img src="image.jpg" style="image-at: 100, 600" />`)
-- image-position (for *img* tag, ex. `<img src="image.jpg" style="image-position: center" />`)
-- image-scale (for *img* tag, ex. `<img src="image.jpg" style="image-scale: 0.3" />`)
-- list-symbol (for *ul* tag, ex. `<ul style="list-symbol: -">`)
-- mode (ex. `<h3 style="mode: stroke">Stroke text</h3>`)
+- **dash**: for *hr* tag, dash types, integer or comma separated integers, ex. `<hr style="dash: 4"/>`
+- **image-at**: for *img* tag, origin (0, 0) is left bottom, ex. `<img src="image.jpg" style="image-at: 100, 600" />`
+- **image-position**: for *img* tag, ex. `<img src="image.jpg" style="image-position: center" />`
+- **image-scale**: for *img* tag, ex. `<img src="image.jpg" style="image-scale: 0.3" />`
+- **list-symbol**: for *ul* tag, ex. `<ul style="list-symbol: -">`
+- **mode**: text mode, values: *:clip*, *:fill*, *:fill_clip*, *:fill_stroke*, *:fill_stroke_clip*, *:invisible*, *:stroke*, *:stroke_clip*, ex. `<h3 style="mode: stroke">Stroke text</h3>`
 
 See [Prawn documentation](https://github.com/prawnpdf/prawn-table#documentation) for PDF options details.
 

@@ -24,7 +24,7 @@ module PrawnStyledText
         when :character_spacing
           v.to_f
         when :color
-          v.delete '#'
+          parse_color( v )
         when :font
           matches = v.match /'([^']*)'|"([^"]*)"|(.*)/
           matches[3] || matches[2] || matches[1] || ''
@@ -140,6 +140,18 @@ module PrawnStyledText
         traverse( node.children, context, &block ) if node.children.count > 0
         yield :closing_tag, element[:name], context.pop
       end
+    end
+  end
+
+  private
+
+  def self.parse_color( value )
+    if value.start_with?( 'rgb' )
+      matches = /rgb\((?<numbers>.*)\)/.match( value )
+      numbers = matches[:numbers].split(',').map(&:strip)
+      numbers.map { |n| n.to_i.to_s(16).rjust(2, '0') }.join
+    else
+      value.delete( '#' )
     end
   end
 end

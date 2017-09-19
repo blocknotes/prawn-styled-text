@@ -43,7 +43,7 @@ HTML tags:
 
 CSS attributes:
 - **background**: for *mark* tag, only 6 hex digits format, # is ignored - ex. `style="background: #FFCC00"`
-- **color**: only 6 hex digits format, # is ignored - ex. `style="color: #FFBB11"`
+- **color**: 6 hex digits format (# is ignored - ex. `style="color: #FFBB11"`) and rgb format (`style="color: rgb(255, 255, 255)"`) supported
 - **font-family**: font must be registered, quotes are optional, ex. `style="font: Courier"`
 - **font-size**: units are ignored - ex. `style="font-size: 20px"`
 - **font-style**: values: *:bold*, *:bold_italic*, *:italic*, *:normal*; string or comma separated strings - ex. `style="font-style: bold, italic"`

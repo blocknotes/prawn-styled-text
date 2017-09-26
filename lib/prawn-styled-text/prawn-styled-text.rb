@@ -115,6 +115,14 @@ module PrawnStyledText
         context[:options][:size] = font_size * 0.66
       when :u, :ins # underline
         styles.push :underline
+      when :font
+        attributes = {
+          font: part[:node]['face'],
+          color: part[:node]['color'],
+          size: part[:node]['size']
+        }.delete_if { |k, v| v.nil? }
+        values = adjust_values( pdf, attributes )
+        context[:options].merge! values
       end
       context[:options][:styles] = styles if styles.any?
       # Evalutate attributes

@@ -10,7 +10,7 @@ module PrawnStyledText
   DEF_MARGIN_UL = 15
   DEF_SYMBOL_UL = "\x95 "
   HEADINGS = { h1: 32, h2: 24, h3: 20, h4: 16, h5: 14, h6: 13 }
-  RENAME = { 'font-family': :font, 'font-size': :size, 'font-style': :styles, 'letter-spacing': :character_spacing }
+  RENAME = { 'font-family': :font, 'font-size': :size, 'font-style': :styles, 'letter-spacing': :character_spacing, 'background-color': :background }
 
   @@margin_ul = 0
   @@symbol_ul = ''
@@ -23,8 +23,8 @@ module PrawnStyledText
       ret[key] = case key
         when :character_spacing
           v.to_f
-        when :color
-          v.delete '#'
+        when :color, :background
+          parse_color( v )
         when :font
           matches = v.match /'([^']*)'|"([^"]*)"|(.*)/
           matches[3] || matches[2] || matches[1] || ''
@@ -115,13 +115,21 @@ module PrawnStyledText
         context[:options][:size] = font_size * 0.66
       when :u, :ins # underline
         styles.push :underline
+      when :font
+        attributes = {
+          font: part[:node]['face'],
+          color: part[:node]['color'],
+          size: part[:node]['size']
+        }.delete_if { |k, v| v.nil? }
+        values = adjust_values( pdf, attributes )
+        context[:options].merge! values
       end
       context[:options][:styles] = styles if styles.any?
       # Evalutate attributes
       attributes = part[:node].get 'style'
       if attributes
         values = adjust_values( pdf, attributes.scan( /\s*([^:]+):\s*([^;]+)[;]*/ ) )
-        @@highlight.set_color( values[:background].delete( '#' ) ) if tag == :mark && values[:background]
+        @@highlight.set_color( values[:background] ) if tag == :mark && values[:background]
         context[:options].merge! values
       end
       font_size = context[:options][:size] if font_size
@@ -140,6 +148,18 @@ module PrawnStyledText
         traverse( node.children, context, &block ) if node.children.count > 0
         yield :closing_tag, element[:name], context.pop
       end
+    end
+  end
+
+  private
+
+  def self.parse_color( value )
+    if value.start_with?( 'rgb' )
+      matches = /rgb\((?<numbers>.*)\)/.match( value )
+      numbers = matches[:numbers].split(',').map(&:strip)
+      numbers.map { |n| n.to_i.to_s(16).rjust(2, '0') }.join
+    else
+      value.delete( '#' )
     end
   end
 end

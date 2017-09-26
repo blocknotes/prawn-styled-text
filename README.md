@@ -26,6 +26,7 @@ HTML tags:
 - **del**: strike-through
 - **div**: block element
 - **em**: italic
+- **font**: inline formatted element
 - **h1** - **h6**: headings
 - **hr**: horizontal line
 - **i**: italic
@@ -41,9 +42,14 @@ HTML tags:
 - **u**: underline
 - **ul**: list
 
+HTML attributes (for *font* tag):
+- **color**: specifies font color, hex and rgb formats supported (`<font color="#FF0000">..</font>`)
+- **face**: specifies font face (`<font face="Courier">...</font>`)
+- **size**: specifies font size (`<font size="20">...</font>`)
+
 CSS attributes:
-- **background**: for *mark* tag, only 6 hex digits format, # is ignored - ex. `style="background: #FFCC00"`
-- **color**: only 6 hex digits format, # is ignored - ex. `style="color: #FFBB11"`
+- **background**: for *mark* tag, 6 hex digits format (# is ignored - ex. `style="background: #FFCC00"`) and rgb format (`style="background: rgb(255, 204, 0)"`) supported
+- **color**: 6 hex digits format (# is ignored - ex. `style="color: #FFBB11"`) and rgb format (`style="color: rgb(255, 255, 255)"`) supported
 - **font-family**: font must be registered, quotes are optional, ex. `style="font: Courier"`
 - **font-size**: units are ignored - ex. `style="font-size: 20px"`
 - **font-style**: values: *:bold*, *:bold_italic*, *:italic*, *:normal*; string or comma separated strings - ex. `style="font-style: bold, italic"`
@@ -57,7 +63,7 @@ CSS attributes:
 - **text-align**: ex. `style="text-align: center"`
 - **width**: for *img* tag, ex. `<img src="test.jpg" style="width: 50%; height: 200"/>`
 
-Olther attributes:
+Other attributes:
 - **dash**: for *hr* tag, dash types, integer or comma separated integers, ex. `<hr style="dash: 4"/>`
 - **image-at**: for *img* tag, origin (0, 0) is left bottom, ex. `<img src="image.jpg" style="image-at: 100, 600" />`
 - **image-position**: for *img* tag, ex. `<img src="image.jpg" style="image-position: center" />`

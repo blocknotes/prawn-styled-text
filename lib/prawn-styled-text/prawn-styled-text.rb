@@ -10,7 +10,7 @@ module PrawnStyledText
   DEF_MARGIN_UL = 15
   DEF_SYMBOL_UL = "\x95 "
   HEADINGS = { h1: 32, h2: 24, h3: 20, h4: 16, h5: 14, h6: 13 }
-  RENAME = { 'font-family': :font, 'font-size': :size, 'font-style': :styles, 'letter-spacing': :character_spacing }
+  RENAME = { 'font-family': :font, 'font-size': :size, 'font-style': :styles, 'letter-spacing': :character_spacing, 'background-color': :background }
 
   @@margin_ul = 0
   @@symbol_ul = ''
@@ -23,7 +23,7 @@ module PrawnStyledText
       ret[key] = case key
         when :character_spacing
           v.to_f
-        when :color
+        when :color, :background
           parse_color( v )
         when :font
           matches = v.match /'([^']*)'|"([^"]*)"|(.*)/
@@ -129,7 +129,7 @@ module PrawnStyledText
       attributes = part[:node].get 'style'
       if attributes
         values = adjust_values( pdf, attributes.scan( /\s*([^:]+):\s*([^;]+)[;]*/ ) )
-        @@highlight.set_color( values[:background].delete( '#' ) ) if tag == :mark && values[:background]
+        @@highlight.set_color( values[:background] ) if tag == :mark && values[:background]
         context[:options].merge! values
       end
       font_size = context[:options][:size] if font_size

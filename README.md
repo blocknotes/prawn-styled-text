@@ -48,7 +48,7 @@ HTML attributes (for *font* tag):
 - **size**: specifies font size (`<font size="20">...</font>`)
 
 CSS attributes:
-- **background**: for *mark* tag, only 6 hex digits format, # is ignored - ex. `style="background: #FFCC00"`
+- **background**: for *mark* tag, 6 hex digits format (# is ignored - ex. `style="background: #FFCC00"`) and rgb format (`style="background: rgb(255, 204, 0)"`) supported
 - **color**: 6 hex digits format (# is ignored - ex. `style="color: #FFBB11"`) and rgb format (`style="color: rgb(255, 255, 255)"`) supported
 - **font-family**: font must be registered, quotes are optional, ex. `style="font: Courier"`
 - **font-size**: units are ignored - ex. `style="font-size: 20px"`

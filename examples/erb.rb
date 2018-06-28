@@ -1,3 +1,5 @@
+$LOAD_PATH << '../lib'
+
 require 'erb'
 require 'prawn'
 require 'prawn-styled-text'

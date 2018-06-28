@@ -1,3 +1,5 @@
+$LOAD_PATH << '../lib'
+
 require 'prawn'
 require 'prawn-styled-text'
 require 'oga'

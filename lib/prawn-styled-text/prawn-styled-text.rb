@@ -14,6 +14,7 @@ module PrawnStyledText
 
   @@margin_ul = 0
   @@symbol_ul = ''
+  @@last_el = nil
 
   def self.adjust_values( pdf, values )
     ret = {}
@@ -51,7 +52,7 @@ module PrawnStyledText
     # Evalutate tag
     case data[:name]
     when :br # new line
-      context[:text] ||= [ { text: "\n" } ]
+      context[:text] ||= [ { text: "\n" } ] if @@last_el == :br
     when :img # image
       context[:flush] ||= true
       context[:src] = data[:node].get 'src'
@@ -132,13 +133,16 @@ module PrawnStyledText
   def self.traverse( nodes, context = [], &block )
     nodes.each do |node|
       if node.is_a? Oga::XML::Text
-        yield :text_node, node.text.delete( "\n\r" ), context
+        text = node.text.delete( "\n\r" )
+        yield :text_node, text, context
+        @@last_el = nil unless text.empty?
       elsif node.is_a? Oga::XML::Element
         element = { name: node.name.to_sym, node: node }
         yield :opening_tag, element[:name], element
         context.push( element )
         traverse( node.children, context, &block ) if node.children.count > 0
         yield :closing_tag, element[:name], context.pop
+        @@last_el = element[:name]
       end
     end
   end

@@ -96,6 +96,10 @@ module PrawnStyledText
         context[:options][:link] = link if link
       when :b, :strong # bold
         styles.push :bold
+      when :sup, :superscript  # superscript
+      styles.push :superscript
+      when :sub, :subscript # subscript
+      styles.push :subscript
       when :del, :s
         @@strike_through ||= StrikeThroughCallback.new( pdf )
         context[:options][:callback] = @@strike_through

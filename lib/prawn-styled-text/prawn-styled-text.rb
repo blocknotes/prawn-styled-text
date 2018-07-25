@@ -47,10 +47,11 @@ module PrawnStyledText
   end
 
   def self.closing_tag( pdf, data )
+    data_name = data[:name].downcase
     context = { tag: data[:name], options: {} }
-    context[:flush] ||= true if BLOCK_TAGS.include? data[:name]
+    context[:flush] ||= true if BLOCK_TAGS.include? data_name
     # Evalutate tag
-    case data[:name]
+    case data_name
     when :br # new line
       context[:text] ||= [ { text: "\n" } ] if @@last_el == :br
     when :img # image
@@ -66,12 +67,13 @@ module PrawnStyledText
   end
 
   def self.opening_tag( pdf, data )
-    context = { tag: data[:name], options: {} }
-    context[:flush] ||= true if BLOCK_TAGS.include? data[:name]
+    data_name = data[:name].downcase
+    context = { tag: data_name, options: {} }
+    context[:flush] ||= true if BLOCK_TAGS.include? data_name
     # Evalutate attributes
     attributes = data[:node].get 'style'
     context[:options].merge!( adjust_values( pdf, attributes.scan( /\s*([^:]+):\s*([^;]+)[;]*/ ) ) ) if attributes
-    if data[:name] == :ul
+    if data_name == :ul
       @@margin_ul += ( context[:options][:'margin-left'] ? context[:options][:'margin-left'].to_i : DEF_MARGIN_UL )
       @@symbol_ul = if context[:options][:'list-symbol']
           matches = context[:options][:'list-symbol'].match /'([^']*)'|"([^"]*)"|(.*)/

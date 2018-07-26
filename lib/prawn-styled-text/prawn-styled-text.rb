@@ -137,7 +137,7 @@ module PrawnStyledText
         yield :text_node, text, context
         @@last_el = nil unless text.empty?
       elsif node.is_a? Oga::XML::Element
-        element = { name: node.name.to_sym, node: node }
+        element = { name: node.name.downcase.to_sym, node: node }
         yield :opening_tag, element[:name], element
         context.push( element )
         traverse( node.children, context, &block ) if node.children.count > 0

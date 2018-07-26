@@ -47,11 +47,10 @@ module PrawnStyledText
   end
 
   def self.closing_tag( pdf, data )
-    data_name = data[:name].downcase
     context = { tag: data[:name], options: {} }
-    context[:flush] ||= true if BLOCK_TAGS.include? data_name
+    context[:flush] ||= true if BLOCK_TAGS.include? data[:name]
     # Evalutate tag
-    case data_name
+    case data[:name]
     when :br # new line
       context[:text] ||= [ { text: "\n" } ] if @@last_el == :br
     when :img # image
@@ -67,13 +66,12 @@ module PrawnStyledText
   end
 
   def self.opening_tag( pdf, data )
-    data_name = data[:name].downcase
-    context = { tag: data_name, options: {} }
-    context[:flush] ||= true if BLOCK_TAGS.include? data_name
+    context = { tag: data[:name], options: {} }
+    context[:flush] ||= true if BLOCK_TAGS.include? data[:name]
     # Evalutate attributes
     attributes = data[:node].get 'style'
     context[:options].merge!( adjust_values( pdf, attributes.scan( /\s*([^:]+):\s*([^;]+)[;]*/ ) ) ) if attributes
-    if data_name == :ul
+    if data[:name] == :ul
       @@margin_ul += ( context[:options][:'margin-left'] ? context[:options][:'margin-left'].to_i : DEF_MARGIN_UL )
       @@symbol_ul = if context[:options][:'list-symbol']
           matches = context[:options][:'list-symbol'].match /'([^']*)'|"([^"]*)"|(.*)/
@@ -139,7 +137,7 @@ module PrawnStyledText
         yield :text_node, text, context
         @@last_el = nil unless text.empty?
       elsif node.is_a? Oga::XML::Element
-        element = { name: node.name.to_sym, node: node }
+        element = { name: node.name.downcase.to_sym, node: node }
         yield :opening_tag, element[:name], element
         context.push( element )
         traverse( node.children, context, &block ) if node.children.count > 0

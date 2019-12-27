@@ -1,0 +1,100 @@
+AllCops:
+  TargetRubyVersion: 2.5.3
+  Exclude:
+    - node_modules/**/*
+    - tmp/**/*
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: true
+  Max: 120
+
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/BlockLength:
+  Exclude:
+    - config/routes.rb
+    - db/seeds/**/*
+    - spec/**/*
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Max: 12
+
+Metrics/MethodLength:
+  Enabled: true
+  Max: 12
+
+Metrics/ModuleLength:
+  Max: 150
+
+Metrics/ParameterLists:
+  Enabled: true
+  Max: 6
+
+Naming/FileName:
+  Enabled: false
+
+Style/Alias:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#stylealias
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - app/**/prependers/**/*
+
+Style/Documentation:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#styledocumentation
+
+Style/DoubleNegation:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#styledoublenegation
+
+Style/IfUnlessModifier:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#styleifunlessmodifier
+
+Style/ModuleFunction:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#stylemodulefunction
+
+Style/MultilineBlockChain:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#stylemultilineblockchain
+
+Style/NegatedIf:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#stylenegatedif
+
+Style/NegatedWhile:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#stylenegatedwhile
+
+Style/ParallelAssignment:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#styleparallelassignment
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/SingleLineBlockParams:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#stylesinglelineblockparams
+
+Style/SpecialGlobalVars:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#stylespecialglobalvars
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#styletrailingcommainarrayliteral
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#styletrailingcommainhashliteral

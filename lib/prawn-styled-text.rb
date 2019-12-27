@@ -1,3 +1,5 @@
 # frozen_string_literal: true
 
-require 'prawn-styled-text/prawn-styled-text'
+require 'prawn-styled-text/style_attributes'
+require 'prawn-styled-text/document_renderer'
+require 'prawn-styled-text/html_handler'

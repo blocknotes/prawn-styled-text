@@ -47,15 +47,15 @@ CSS attributes:
 - **font-family**: font must be registered, quotes are optional, ex. `style="font: Courier"`
 - **font-size**: units are ignored - ex. `style="font-size: 20px"`
 - **font-style**: values: *:bold*, *:bold_italic*, *:italic*, *:normal*; string or comma separated strings - ex. `style="font-style: bold, italic"`
-- **height**: for *img* tag, ex. `<img src="test.jpg" style="width: 50%; height: 200"/>`
+- **height**: for *img* tag, ex. `<img src="image.jpg" style="width: 50%; height: 200"/>`
 - **href**: for *a* tag, ex. `<a href="http://www.google.com/">Google</a>`
 - **letter-spacing**: ex. `style="letter-spacing: 1.5"`
 - **line-height**: heading, units are ignored - ex. `style="line-height: 10"`
 - **margin-left**: units are ignored - ex. `style="margin-left: 15"`
 - **margin-top**: units are ignored - ex. `style="margin-top: 20"`
-- **src**: for *img* tag, ex. `<img src="test.jpg"/>`
+- **src**: for *img* tag, ex. `<img src="image.jpg"/>`
 - **text-align**: ex. `style="text-align: center"`
-- **width**: for *img* tag, ex. `<img src="test.jpg" style="width: 50%; height: 200"/>`
+- **width**: for *img* tag, ex. `<img src="image.jpg" style="width: 50%; height: 200"/>`
 
 Olther attributes:
 - **dash**: for *hr* tag, dash types, integer or comma separated integers, ex. `<hr style="dash: 4"/>`

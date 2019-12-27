@@ -36,7 +36,7 @@ RSpec.describe 'Lists' do
       expect(text_analysis.font_settings).to match_array(expected_array)
 
       font = TestUtils.default_font
-      x = pdf.page.margins[:left] + PrawnStyledText::DEF_MARGIN_UL
+      x = pdf.page.margins[:left]
       y = pdf.y - font.ascender
       expected_array = [[x, y], [x, (y - font.height).round(3)], [x, (y - font.height * 2).round(3)]]
 

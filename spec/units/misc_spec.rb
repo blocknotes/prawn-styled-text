@@ -6,7 +6,7 @@ RSpec.describe 'Misc' do
   shared_examples 'a specific element with some test content' do
     let(:html) { [expected_content[0], test_content, expected_content[2]].join }
 
-    let(:expected_content) { ['Some ', 'test', ' content'] }
+    let(:expected_content) { ['Some', 'test', 'content'] }
     let(:expected_positions) do
       x = pdf_doc.page.margins[:left]
       y = pdf_doc.y - TestUtils.default_font.ascender

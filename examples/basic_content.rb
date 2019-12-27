@@ -6,8 +6,7 @@ require 'prawn'
 require 'prawn-styled-text'
 require 'oga'
 
-Prawn::Font::AFM.hide_m17n_warning = true
-
+html = File.read(File.expand_path('./basic_content.html', __dir__))
 pdf = Prawn::Document.new
-pdf.styled_text(File.read('test.html'))
-pdf.render_file('basic.pdf')
+HtmlHandler.new(pdf).process(html)
+pdf.render_file('basic_content.pdf')

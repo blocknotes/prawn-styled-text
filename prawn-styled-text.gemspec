@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'prawn-styled-text/version'
@@ -15,6 +17,8 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0")
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'prawn', '~> 2'
-  spec.add_runtime_dependency 'oga', '~> 2'
+  spec.add_runtime_dependency 'oga', '~> 2.16'
+  spec.add_runtime_dependency 'prawn', '~> 2.2.2'
+
+  spec.add_development_dependency 'rubocop', '~> 0.76'
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 $LOAD_PATH << '../lib'
 
 require 'prawn'
@@ -7,5 +9,5 @@ require 'oga'
 Prawn::Font::AFM.hide_m17n_warning = true
 
 pdf = Prawn::Document.new
-pdf.styled_text File.read( 'test.html' )
-pdf.render_file 'test.pdf'
+pdf.styled_text(File.read('test.html'))
+pdf.render_file('basic.pdf')

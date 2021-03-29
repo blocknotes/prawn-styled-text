@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0")
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'oga', '~> 2.16'
+  spec.add_runtime_dependency 'oga', '~> 2.15'
   spec.add_runtime_dependency 'prawn', '~> 2.2.2'
 
   spec.add_development_dependency 'rubocop', '~> 0.76'

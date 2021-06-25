@@ -1,0 +1,33 @@
+---
+inherit_from:
+  - .rubocop_todo.yml
+  - https://relaxed.ruby.style/rubocop.yml
+
+
+
+AllCops:
+  TargetRubyVersion: 2.7
+  Exclude:
+    - bin/*
+    - spec/dummy/**/*
+    - vendor/**/*
+  NewCops: enable
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+Naming/FileName:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: true
+  Max: 120
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true

@@ -50,7 +50,7 @@ Prawn::Document.class_eval do
       elsif type == :closing_tag
         formatted_text(context[:text]) if context[:text]
         if context[:tag] == :hr
-          dash(options[:dash].include?(',') ? options[:dash].split(',').map(&:to_i) : options[:dash].to_i) if options[:dash]
+          dash(options[:dash].include?(',') ? options[:dash].split(',').map(&:to_i) : options[:dash].to_i) if options[:dash] # rubocop:disable Layout/LineLength
           if options[:color]
             last_stroke_color = stroke_color
             stroke_color(options[:color])

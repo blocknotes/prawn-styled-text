@@ -14,11 +14,9 @@ Gem::Specification.new do |spec|
   spec.email         = 'mat@blocknot.es'
   spec.homepage      = 'https://github.com/blocknotes/prawn-styled-text'
 
-  spec.files         = `git ls-files -z`.split("\x0")
+  spec.files         = Dir['lib/**/*', 'LICENSE.txt', 'README.md']
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'oga', '~> 2.15'
   spec.add_runtime_dependency 'prawn', '~> 2.2.2'
-
-  spec.add_development_dependency 'rubocop', '~> 0.76'
 end

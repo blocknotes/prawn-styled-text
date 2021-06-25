@@ -12,7 +12,12 @@ module PrawnStyledText
   DEF_MARGIN_UL = 15
   DEF_SYMBOL_UL = "\x95 "
   HEADINGS = { h1: 32, h2: 24, h3: 20, h4: 16, h5: 14, h6: 13 }.freeze
-  RENAME = { 'font-family': :font, 'font-size': :size, 'font-style': :styles, 'letter-spacing': :character_spacing }.freeze
+  RENAME = {
+    'font-family': :font,
+    'font-size': :size,
+    'font-style': :styles,
+    'letter-spacing': :character_spacing
+  }.freeze
 
   @@margin_ul = 0
   @@symbol_ul = ''

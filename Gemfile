@@ -9,7 +9,13 @@ group :development, :test do
   gem 'rspec'
 
   # Linters
+  gem 'fasterer'
+  gem 'reek'
   gem 'rubocop'
+  gem 'rubocop-packaging'
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
 
   # Tools
   gem 'pry-rails'

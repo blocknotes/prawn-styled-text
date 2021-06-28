@@ -7,6 +7,6 @@ RSpec.describe 'Headings' do
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array('Just a test')
-    expect(text_analysis.font_settings).to match_array([{name: :Helvetica, size: 32}])
+    expect(text_analysis.font_settings).to match_array([{ name: :Helvetica, size: 32 }])
   end
 end

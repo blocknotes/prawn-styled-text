@@ -3,13 +3,10 @@ inherit_from:
   - .rubocop_todo.yml
   - https://relaxed.ruby.style/rubocop.yml
 
-
-
 AllCops:
   TargetRubyVersion: 2.7
   Exclude:
     - bin/*
-    - spec/dummy/**/*
     - vendor/**/*
   NewCops: enable
 

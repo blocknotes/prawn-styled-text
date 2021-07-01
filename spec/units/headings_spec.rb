@@ -11,7 +11,7 @@ RSpec.describe 'Headings' do
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array('header with tag h1')
-    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font(pdf), size: 32 }])
+    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font_family, size: 32 }])
     expect(text_analysis.positions).to match_array([base_position(pdf, 32)])
   end
 
@@ -20,7 +20,7 @@ RSpec.describe 'Headings' do
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array('header with tag h2')
-    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font(pdf), size: 24 }])
+    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font_family, size: 24 }])
     expect(text_analysis.positions).to match_array([base_position(pdf, 24)])
   end
 
@@ -29,7 +29,7 @@ RSpec.describe 'Headings' do
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array('header with tag h3')
-    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font(pdf), size: 20 }])
+    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font_family, size: 20 }])
     expect(text_analysis.positions).to match_array([base_position(pdf, 20)])
   end
 
@@ -38,7 +38,7 @@ RSpec.describe 'Headings' do
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array('header with tag h4')
-    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font(pdf), size: 16 }])
+    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font_family, size: 16 }])
     expect(text_analysis.positions).to match_array([base_position(pdf, 16)])
   end
 
@@ -47,7 +47,7 @@ RSpec.describe 'Headings' do
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array('header with tag h5')
-    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font(pdf), size: 14 }])
+    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font_family, size: 14 }])
     expect(text_analysis.positions).to match_array([base_position(pdf, 14)])
   end
 
@@ -56,7 +56,7 @@ RSpec.describe 'Headings' do
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array('header with tag h6')
-    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font(pdf), size: 13 }])
+    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font_family, size: 13 }])
     expect(text_analysis.positions).to match_array([base_position(pdf, 13)])
   end
 end

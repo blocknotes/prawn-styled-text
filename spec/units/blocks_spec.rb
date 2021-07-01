@@ -7,10 +7,8 @@ RSpec.describe 'Blocks' do
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to eq ['Some content in a div element']
-    expect(text_analysis.font_settings).to eq [{ name: TestUtils.default_font(pdf), size: pdf.font_size }]
-
-    font = Prawn::Document.new.font
-    expect(text_analysis.positions).to eq [[pdf.page.margins[:left], pdf.y - font.ascender]]
+    expect(text_analysis.font_settings).to eq [{ name: TestUtils.default_font_family, size: pdf.font_size }]
+    expect(text_analysis.positions).to eq [[pdf.page.margins[:left], pdf.y - TestUtils.default_font.ascender]]
   end
 
   it 'renders some contents in a p' do
@@ -19,9 +17,7 @@ RSpec.describe 'Blocks' do
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to eq ['Some content in a p element']
-    expect(text_analysis.font_settings).to eq [{ name: TestUtils.default_font(pdf), size: pdf.font_size }]
-
-    font = Prawn::Document.new.font
-    expect(text_analysis.positions).to eq [[pdf.page.margins[:left], pdf.y - font.ascender]]
+    expect(text_analysis.font_settings).to eq [{ name: TestUtils.default_font_family, size: pdf.font_size }]
+    expect(text_analysis.positions).to eq [[pdf.page.margins[:left], pdf.y - TestUtils.default_font.ascender]]
   end
 end

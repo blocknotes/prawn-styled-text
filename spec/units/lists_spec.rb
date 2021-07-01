@@ -30,12 +30,12 @@ RSpec.describe 'Lists' do
       pdf = TestUtils.styled_text_document(html)
       text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
-      expected_array = [{ name: TestUtils.default_font(pdf), size: pdf.font_size }] * 3
+      expected_array = [{ name: TestUtils.default_font_family, size: pdf.font_size }] * 3
 
       expect(text_analysis.strings).to match_array(['• First item', '• Second item', '• Third item'])
       expect(text_analysis.font_settings).to match_array(expected_array)
 
-      font = Prawn::Document.new.font
+      font = TestUtils.default_font
       x = pdf.page.margins[:left] + PrawnStyledText::DEF_MARGIN_UL
       y = pdf.y - font.ascender
       expected_array = [[x, y], [x, (y - font.height).round(3)], [x, (y - font.height * 2).round(3)]]

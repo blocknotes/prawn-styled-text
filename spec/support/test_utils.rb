@@ -3,8 +3,12 @@
 module TestUtils
   extend self
 
-  def default_font(pdf)
-    pdf.font.family.to_sym
+  def default_font
+    Prawn::Document.new.font
+  end
+
+  def default_font_family
+    default_font.family.to_sym
   end
 
   def styled_text_document(html)

@@ -7,7 +7,7 @@ module TestUtils
     pdf.font.family.to_sym
   end
 
-  def prepare_document(html)
+  def styled_text_document(html)
     Prawn::Document.new.tap do |pdf|
       pdf.styled_text html
     end

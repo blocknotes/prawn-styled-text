@@ -8,7 +8,7 @@ RSpec.describe 'Lists' do
         </ul>
       HTML
 
-      pdf = TestUtils.prepare_document(html)
+      pdf = TestUtils.styled_text_document(html)
       text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
       expect(text_analysis.strings).to be_empty
@@ -27,7 +27,7 @@ RSpec.describe 'Lists' do
         </ul>
       HTML
 
-      pdf = TestUtils.prepare_document(html)
+      pdf = TestUtils.styled_text_document(html)
       text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
       expected_array = [{ name: TestUtils.default_font(pdf), size: pdf.font_size }] * 3

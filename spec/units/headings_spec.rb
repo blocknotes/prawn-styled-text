@@ -7,7 +7,7 @@ RSpec.describe 'Headings' do
   end
 
   it 'renders an header tag: h1' do
-    pdf = TestUtils.prepare_document('<h1>header with tag h1</h1>')
+    pdf = TestUtils.styled_text_document('<h1>header with tag h1</h1>')
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array('header with tag h1')
@@ -16,7 +16,7 @@ RSpec.describe 'Headings' do
   end
 
   it 'renders an header tag: h2' do
-    pdf = TestUtils.prepare_document('<h2>header with tag h2</h2>')
+    pdf = TestUtils.styled_text_document('<h2>header with tag h2</h2>')
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array('header with tag h2')
@@ -25,7 +25,7 @@ RSpec.describe 'Headings' do
   end
 
   it 'renders an header tag: h3' do
-    pdf = TestUtils.prepare_document('<h3>header with tag h3</h3>')
+    pdf = TestUtils.styled_text_document('<h3>header with tag h3</h3>')
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array('header with tag h3')
@@ -34,7 +34,7 @@ RSpec.describe 'Headings' do
   end
 
   it 'renders an header tag: h4' do
-    pdf = TestUtils.prepare_document('<h4>header with tag h4</h4>')
+    pdf = TestUtils.styled_text_document('<h4>header with tag h4</h4>')
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array('header with tag h4')
@@ -43,7 +43,7 @@ RSpec.describe 'Headings' do
   end
 
   it 'renders an header tag: h5' do
-    pdf = TestUtils.prepare_document('<h5>header with tag h5</h5>')
+    pdf = TestUtils.styled_text_document('<h5>header with tag h5</h5>')
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array('header with tag h5')
@@ -52,7 +52,7 @@ RSpec.describe 'Headings' do
   end
 
   it 'renders an header tag: h6' do
-    pdf = TestUtils.prepare_document('<h6>header with tag h6</h6>')
+    pdf = TestUtils.styled_text_document('<h6>header with tag h6</h6>')
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array('header with tag h6')

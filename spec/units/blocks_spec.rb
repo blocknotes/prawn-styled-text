@@ -3,7 +3,7 @@
 RSpec.describe 'Blocks' do
   it 'renders some contents in a div' do
     html = '<div>Some content in a div element</div>'
-    pdf = TestUtils.prepare_document(html)
+    pdf = TestUtils.styled_text_document(html)
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to eq ['Some content in a div element']
@@ -15,7 +15,7 @@ RSpec.describe 'Blocks' do
 
   it 'renders some contents in a p' do
     html = '<p>Some content in a p element</p>'
-    pdf = TestUtils.prepare_document(html)
+    pdf = TestUtils.styled_text_document(html)
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to eq ['Some content in a p element']

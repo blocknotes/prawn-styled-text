@@ -3,14 +3,14 @@
 RSpec.describe 'Misc' do
   it 'renders some breaking line elements' do
     html = 'First line<br>Second line<br/>Third line'
-    pdf = TestUtils.prepare_document(html)
+    pdf = TestUtils.styled_text_document(html)
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to match_array(['First line', 'Second line', 'Third line'])
   end
 
   it 'renders an horizontal line element', skip: 'TODO' do
-    pdf = TestUtils.prepare_document('<hr>Some content')
+    pdf = TestUtils.styled_text_document('<hr>Some content')
     text_analysis = PDF::Inspector::Text.analyze(pdf.render)
 
     expect(text_analysis.strings).to eq(['Some content'])

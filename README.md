@@ -1,10 +1,19 @@
-# Prawn Styled Text [![Gem Version](https://badge.fury.io/rb/prawn-styled-text.svg)](https://badge.fury.io/rb/prawn-styled-text)
+# Prawn Styled Text
+[![gem version](https://badge.fury.io/rb/prawn-styled-text.svg)](https://badge.fury.io/rb/prawn-styled-text)
+[![gem downloads](https://badgen.net/rubygems/dt/prawn-styled-text)](https://rubygems.org/gems/prawn-styled-text)
+[![linters](https://github.com/blocknotes/prawn-styled-text/actions/workflows/linters.yml/badge.svg)](https://github.com/blocknotes/prawn-styled-text/actions/workflows/linters.yml)
+[![specs](https://github.com/blocknotes/prawn-styled-text/actions/workflows/specs.yml/badge.svg)](https://github.com/blocknotes/prawn-styled-text/actions/workflows/specs.yml)
 
 A Prawn PDF component which adds basic HTML support.
 
-**Important**: render HTML documents is not an easy task; only a small set of tags and attributes are supported and complex layouts will not render correctly; if you look for real HTML to PDF convertion please try other gems like WickedPDF
+**Important**: render HTML documents is not an easy task; only a small set of tags and attributes are supported and complex layouts will not render correctly; if you look for real HTML to PDF conversion please try other gems like WickedPDF.
 
-Install with `gem install prawn-styled-text` or using bundler `gem 'prawn-styled-text'`
+Please :star: if you like it.
+
+## Install
+
+- Add to your Gemfile: `gem 'prawn-styled-text'` (and execute `bundle`)
+- Use the method `styled_text` on a `Prawn::Document` instance
 
 ## Examples
 
@@ -20,6 +29,7 @@ For more examples see this [folder](https://github.com/blocknotes/prawn-styled-t
 ## Supported tags & attributes
 
 HTML tags:
+
 - **a**: link
 - **b**: bold
 - **br**: new line
@@ -42,6 +52,7 @@ HTML tags:
 - **ul**: list
 
 CSS attributes:
+
 - **background**: for *mark* tag, only 6 hex digits format, # is ignored - ex. `style="background: #FFCC00"`
 - **color**: only 6 hex digits format, # is ignored - ex. `style="color: #FFBB11"`
 - **font-family**: font must be registered, quotes are optional, ex. `style="font: Courier"`
@@ -57,7 +68,8 @@ CSS attributes:
 - **text-align**: ex. `style="text-align: center"`
 - **width**: for *img* tag, ex. `<img src="test.jpg" style="width: 50%; height: 200"/>`
 
-Olther attributes:
+Other custom attributes:
+
 - **dash**: for *hr* tag, dash types, integer or comma separated integers, ex. `<hr style="dash: 4"/>`
 - **image-at**: for *img* tag, origin (0, 0) is left bottom, ex. `<img src="image.jpg" style="image-at: 100, 600" />`
 - **image-position**: for *img* tag, ex. `<img src="image.jpg" style="image-position: center" />`
@@ -69,8 +81,8 @@ See [Prawn documentation](https://github.com/prawnpdf/prawn-table#documentation)
 
 ## Contributors
 
-- [Mattia Roccoberton](http://blocknot.es) - creator, maintainer
+- [Mattia Roccoberton](https://www.blocknot.es): author
 
 ## License
 
-[MIT](LICENSE.txt)
+The gem is available as open-source under the terms of the [MIT](LICENSE.txt).

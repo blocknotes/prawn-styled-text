@@ -1,23 +1,29 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Blocks' do
-  it 'renders some contents in a div' do
-    html = '<div>Some content in a div element</div>'
-    pdf = TestUtils.styled_text_document(html)
-    text_analysis = PDF::Inspector::Text.analyze(pdf.render)
+  let(:pdf_doc) { TestUtils.styled_text_document(html) }
 
-    expect(text_analysis.strings).to eq ['Some content in a div element']
-    expect(text_analysis.font_settings).to eq [{ name: TestUtils.default_font_family, size: pdf.font_size }]
-    expect(text_analysis.positions).to eq [[pdf.page.margins[:left], pdf.y - TestUtils.default_font.ascender]]
+  context 'with some content in an element div' do
+    let(:html) { '<div>Some content in a element div</div>' }
+
+    let(:expected_content) { ['Some content in a element div'] }
+    let(:expected_x) { pdf_doc.page.margins[:left] }
+    let(:expected_y) { pdf_doc.y - TestUtils.default_font.ascender }
+    let(:expected_font_family) { TestUtils.default_font_family }
+    let(:expected_font_size) { pdf_doc.font_size }
+
+    include_examples 'checks contents, positions and font settings'
   end
 
-  it 'renders some contents in a p' do
-    html = '<p>Some content in a p element</p>'
-    pdf = TestUtils.styled_text_document(html)
-    text_analysis = PDF::Inspector::Text.analyze(pdf.render)
+  context 'with some content in an element p' do
+    let(:html) { '<p>Some content in a element p</p>' }
 
-    expect(text_analysis.strings).to eq ['Some content in a p element']
-    expect(text_analysis.font_settings).to eq [{ name: TestUtils.default_font_family, size: pdf.font_size }]
-    expect(text_analysis.positions).to eq [[pdf.page.margins[:left], pdf.y - TestUtils.default_font.ascender]]
+    let(:expected_content) { ['Some content in a element p'] }
+    let(:expected_x) { pdf_doc.page.margins[:left] }
+    let(:expected_y) { pdf_doc.y - TestUtils.default_font.ascender }
+    let(:expected_font_family) { TestUtils.default_font_family }
+    let(:expected_font_size) { pdf_doc.font_size }
+
+    include_examples 'checks contents, positions and font settings'
   end
 end

@@ -6,57 +6,81 @@ RSpec.describe 'Headings' do
     [pdf.page.margins[:left], pdf.y - font.ascender - margin_top]
   end
 
-  it 'renders an header tag: h1' do
-    pdf = TestUtils.styled_text_document('<h1>header with tag h1</h1>')
-    text_analysis = PDF::Inspector::Text.analyze(pdf.render)
-
-    expect(text_analysis.strings).to match_array('header with tag h1')
-    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font_family, size: 32 }])
-    expect(text_analysis.positions).to match_array([base_position(pdf, 32)])
+  def font_ascender(font_size:)
+    Prawn::Document.new.font('Helvetica', size: font_size).ascender
   end
 
-  it 'renders an header tag: h2' do
-    pdf = TestUtils.styled_text_document('<h2>header with tag h2</h2>')
-    text_analysis = PDF::Inspector::Text.analyze(pdf.render)
+  let(:pdf_doc) { TestUtils.styled_text_document(html) }
 
-    expect(text_analysis.strings).to match_array('header with tag h2')
-    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font_family, size: 24 }])
-    expect(text_analysis.positions).to match_array([base_position(pdf, 24)])
+  context 'with some content in an element h1' do
+    let(:html) { '<h1>Some content in a element h1</h1>' }
+
+    let(:expected_content) { ['Some content in a element h1'] }
+    let(:expected_x) { pdf_doc.page.margins[:left] }
+    let(:expected_y) { pdf_doc.y - font_ascender(font_size: 32) - PrawnStyledText::DEF_HEADING_T }
+    let(:expected_font_family) { TestUtils.default_font_family }
+    let(:expected_font_size) { 32 }
+
+    include_examples 'checks contents, positions and font settings'
   end
 
-  it 'renders an header tag: h3' do
-    pdf = TestUtils.styled_text_document('<h3>header with tag h3</h3>')
-    text_analysis = PDF::Inspector::Text.analyze(pdf.render)
+  context 'with some content in an element h2' do
+    let(:html) { '<h2>Some content in a element h2</h2>' }
 
-    expect(text_analysis.strings).to match_array('header with tag h3')
-    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font_family, size: 20 }])
-    expect(text_analysis.positions).to match_array([base_position(pdf, 20)])
+    let(:expected_content) { ['Some content in a element h2'] }
+    let(:expected_x) { pdf_doc.page.margins[:left] }
+    let(:expected_y) { pdf_doc.y - font_ascender(font_size: 24) - PrawnStyledText::DEF_HEADING_T }
+    let(:expected_font_family) { TestUtils.default_font_family }
+    let(:expected_font_size) { 24 }
+
+    include_examples 'checks contents, positions and font settings'
   end
 
-  it 'renders an header tag: h4' do
-    pdf = TestUtils.styled_text_document('<h4>header with tag h4</h4>')
-    text_analysis = PDF::Inspector::Text.analyze(pdf.render)
+  context 'with some content in an element h3' do
+    let(:html) { '<h3>Some content in a element h3</h3>' }
 
-    expect(text_analysis.strings).to match_array('header with tag h4')
-    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font_family, size: 16 }])
-    expect(text_analysis.positions).to match_array([base_position(pdf, 16)])
+    let(:expected_content) { ['Some content in a element h3'] }
+    let(:expected_x) { pdf_doc.page.margins[:left] }
+    let(:expected_y) { pdf_doc.y - font_ascender(font_size: 20) - PrawnStyledText::DEF_HEADING_T }
+    let(:expected_font_family) { TestUtils.default_font_family }
+    let(:expected_font_size) { 20 }
+
+    include_examples 'checks contents, positions and font settings'
   end
 
-  it 'renders an header tag: h5' do
-    pdf = TestUtils.styled_text_document('<h5>header with tag h5</h5>')
-    text_analysis = PDF::Inspector::Text.analyze(pdf.render)
+  context 'with some content in an element h4' do
+    let(:html) { '<h4>Some content in a element h4</h4>' }
 
-    expect(text_analysis.strings).to match_array('header with tag h5')
-    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font_family, size: 14 }])
-    expect(text_analysis.positions).to match_array([base_position(pdf, 14)])
+    let(:expected_content) { ['Some content in a element h4'] }
+    let(:expected_x) { pdf_doc.page.margins[:left] }
+    let(:expected_y) { pdf_doc.y - font_ascender(font_size: 16) - PrawnStyledText::DEF_HEADING_T }
+    let(:expected_font_family) { TestUtils.default_font_family }
+    let(:expected_font_size) { 16 }
+
+    include_examples 'checks contents, positions and font settings'
   end
 
-  it 'renders an header tag: h6' do
-    pdf = TestUtils.styled_text_document('<h6>header with tag h6</h6>')
-    text_analysis = PDF::Inspector::Text.analyze(pdf.render)
+  context 'with some content in an element h5' do
+    let(:html) { '<h5>Some content in a element h5</h5>' }
 
-    expect(text_analysis.strings).to match_array('header with tag h6')
-    expect(text_analysis.font_settings).to match_array([{ name: TestUtils.default_font_family, size: 13 }])
-    expect(text_analysis.positions).to match_array([base_position(pdf, 13)])
+    let(:expected_content) { ['Some content in a element h5'] }
+    let(:expected_x) { pdf_doc.page.margins[:left] }
+    let(:expected_y) { pdf_doc.y - font_ascender(font_size: 14) - PrawnStyledText::DEF_HEADING_T }
+    let(:expected_font_family) { TestUtils.default_font_family }
+    let(:expected_font_size) { 14 }
+
+    include_examples 'checks contents, positions and font settings'
+  end
+
+  context 'with some content in an element h6' do
+    let(:html) { '<h6>Some content in a element h6</h6>' }
+
+    let(:expected_content) { ['Some content in a element h6'] }
+    let(:expected_x) { pdf_doc.page.margins[:left] }
+    let(:expected_y) { pdf_doc.y - font_ascender(font_size: 13) - PrawnStyledText::DEF_HEADING_T }
+    let(:expected_font_family) { TestUtils.default_font_family }
+    let(:expected_font_size) { 13 }
+
+    include_examples 'checks contents, positions and font settings'
   end
 end

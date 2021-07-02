@@ -8,8 +8,9 @@ RSpec.describe 'Styles' do
       let(:html) { '<div style="text-align: left">Some content</div>' }
 
       let(:expected_content) { ['Some content'] }
-      let(:expected_x) { pdf_doc.page.margins[:left] }
-      let(:expected_y) { pdf_doc.y - TestUtils.default_font.ascender }
+      let(:expected_positions) do
+        [[pdf_doc.page.margins[:left], pdf_doc.y - TestUtils.default_font.ascender]]
+      end
 
       include_examples 'checks contents and positions'
     end
@@ -19,8 +20,12 @@ RSpec.describe 'Styles' do
 
       let(:content_width) { pdf_doc.width_of(expected_content.first) }
       let(:expected_content) { ['Some content'] }
-      let(:expected_x) { (pdf_doc.page.margins[:left] + (pdf_doc.bounds.width - content_width) / 2).round(3) }
-      let(:expected_y) { pdf_doc.y - TestUtils.default_font.ascender }
+      let(:expected_positions) do
+        [[
+          (pdf_doc.page.margins[:left] + (pdf_doc.bounds.width - content_width) / 2).round(3),
+          pdf_doc.y - TestUtils.default_font.ascender
+        ]]
+      end
 
       include_examples 'checks contents and positions'
     end
@@ -30,8 +35,12 @@ RSpec.describe 'Styles' do
 
       let(:content_width) { pdf_doc.width_of(expected_content.first) }
       let(:expected_content) { ['Some content'] }
-      let(:expected_x) { pdf_doc.page.margins[:left] + pdf_doc.bounds.width - content_width }
-      let(:expected_y) { pdf_doc.y - TestUtils.default_font.ascender }
+      let(:expected_positions) do
+        [[
+          pdf_doc.page.margins[:left] + pdf_doc.bounds.width - content_width,
+          pdf_doc.y - TestUtils.default_font.ascender
+        ]]
+      end
 
       include_examples 'checks contents and positions'
     end
@@ -42,10 +51,10 @@ RSpec.describe 'Styles' do
       let(:html) { '<div style="font-family: Courier">Some content</div>' }
 
       let(:expected_content) { ['Some content'] }
-      let(:expected_x) { pdf_doc.page.margins[:left] }
-      let(:expected_y) { pdf_doc.y - Prawn::Document.new.font('Courier', size: 12).ascender }
-      let(:expected_font_family) { :Courier }
-      let(:expected_font_size) { 12 }
+      let(:expected_positions) do
+        [[pdf_doc.page.margins[:left], pdf_doc.y - Prawn::Document.new.font('Courier', size: 12).ascender]]
+      end
+      let(:expected_font_settings) { [{ name: :Courier, size: 12 }] }
 
       include_examples 'checks contents, positions and font settings'
     end
@@ -56,10 +65,10 @@ RSpec.describe 'Styles' do
       let(:html) { '<div style="font-size: 20px">Some content</div>' }
 
       let(:expected_content) { ['Some content'] }
-      let(:expected_x) { pdf_doc.page.margins[:left] }
-      let(:expected_y) { pdf_doc.y - Prawn::Document.new.font('Helvetica', size: 20).ascender }
-      let(:expected_font_family) { :Helvetica }
-      let(:expected_font_size) { 20 }
+      let(:expected_positions) do
+        [[pdf_doc.page.margins[:left], pdf_doc.y - Prawn::Document.new.font('Helvetica', size: 20).ascender]]
+      end
+      let(:expected_font_settings) { [{ name: TestUtils.default_font_family, size: 20 }] }
 
       include_examples 'checks contents, positions and font settings'
     end
@@ -70,10 +79,10 @@ RSpec.describe 'Styles' do
       let(:html) { '<div style="font-style: bold">Some content</div>' }
 
       let(:expected_content) { ['Some content'] }
-      let(:expected_x) { pdf_doc.page.margins[:left] }
-      let(:expected_y) { pdf_doc.y - Prawn::Document.new.font('Helvetica-Bold', size: 12).ascender }
-      let(:expected_font_family) { :'Helvetica-Bold' }
-      let(:expected_font_size) { 12 }
+      let(:expected_positions) do
+        [[pdf_doc.page.margins[:left], pdf_doc.y - Prawn::Document.new.font('Helvetica-Bold', size: 12).ascender]]
+      end
+      let(:expected_font_settings) { [{ name: :'Helvetica-Bold', size: 12 }] }
 
       include_examples 'checks contents, positions and font settings'
     end
@@ -82,10 +91,10 @@ RSpec.describe 'Styles' do
       let(:html) { '<div style="font-style: bold">Some content</div>' }
 
       let(:expected_content) { ['Some content'] }
-      let(:expected_x) { pdf_doc.page.margins[:left] }
-      let(:expected_y) { pdf_doc.y - Prawn::Document.new.font('Helvetica-Bold', size: 12).ascender }
-      let(:expected_font_family) { :'Helvetica-Bold' }
-      let(:expected_font_size) { 12 }
+      let(:expected_positions) do
+        [[pdf_doc.page.margins[:left], pdf_doc.y - Prawn::Document.new.font('Helvetica-Bold', size: 12).ascender]]
+      end
+      let(:expected_font_settings) { [{ name: :'Helvetica-Bold', size: 12 }] }
 
       include_examples 'checks contents, positions and font settings'
     end
@@ -94,10 +103,10 @@ RSpec.describe 'Styles' do
       let(:html) { '<div style="font-style: italic">Some content</div>' }
 
       let(:expected_content) { ['Some content'] }
-      let(:expected_x) { pdf_doc.page.margins[:left] }
-      let(:expected_y) { pdf_doc.y - Prawn::Document.new.font('Helvetica-Oblique', size: 12).ascender }
-      let(:expected_font_family) { :'Helvetica-Oblique' }
-      let(:expected_font_size) { 12 }
+      let(:expected_positions) do
+        [[pdf_doc.page.margins[:left], pdf_doc.y - Prawn::Document.new.font('Helvetica-Oblique', size: 12).ascender]]
+      end
+      let(:expected_font_settings) { [{ name: :'Helvetica-Oblique', size: 12 }] }
 
       include_examples 'checks contents, positions and font settings'
     end
@@ -106,10 +115,13 @@ RSpec.describe 'Styles' do
       let(:html) { '<div style="font-style: bold, italic">Some content</div>' }
 
       let(:expected_content) { ['Some content'] }
-      let(:expected_x) { pdf_doc.page.margins[:left] }
-      let(:expected_y) { pdf_doc.y - Prawn::Document.new.font('Helvetica-BoldOblique', size: 12).ascender }
-      let(:expected_font_family) { :'Helvetica-BoldOblique' }
-      let(:expected_font_size) { 12 }
+      let(:expected_positions) do
+        [[
+          pdf_doc.page.margins[:left],
+          pdf_doc.y - Prawn::Document.new.font('Helvetica-BoldOblique', size: 12).ascender
+        ]]
+      end
+      let(:expected_font_settings) { [{ name: :'Helvetica-BoldOblique', size: 12 }] }
 
       include_examples 'checks contents, positions and font settings'
     end
@@ -130,8 +142,9 @@ RSpec.describe 'Styles' do
     let(:html) { '<div style="margin-left: 40px">Some content</div>' }
 
     let(:expected_content) { ['Some content'] }
-    let(:expected_x) { pdf_doc.page.margins[:left] + 40 }
-    let(:expected_y) { pdf_doc.y - Prawn::Document.new.font('Helvetica', size: 12).ascender }
+    let(:expected_positions) do
+      [[pdf_doc.page.margins[:left] + 40, pdf_doc.y - Prawn::Document.new.font('Helvetica', size: 12).ascender]]
+    end
 
     include_examples 'checks contents and positions'
   end
@@ -140,8 +153,9 @@ RSpec.describe 'Styles' do
     let(:html) { '<div style="margin-top: 40">Some content</div>' }
 
     let(:expected_content) { ['Some content'] }
-    let(:expected_x) { pdf_doc.page.margins[:left] }
-    let(:expected_y) { pdf_doc.y - Prawn::Document.new.font('Helvetica', size: 12).ascender - 40 }
+    let(:expected_positions) do
+      [[pdf_doc.page.margins[:left], pdf_doc.y - Prawn::Document.new.font('Helvetica', size: 12).ascender - 40]]
+    end
 
     include_examples 'checks contents and positions'
   end

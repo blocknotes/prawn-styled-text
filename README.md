@@ -13,14 +13,14 @@ Please :star: if you like it.
 ## Install
 
 - Add to your Gemfile: `gem 'prawn-styled-text'` (and execute `bundle`)
-- Use the method `styled_text` on a `Prawn::Document` instance
+- Use the class `HtmlHandler` on a `Prawn::Document` instance
 
 ## Examples
 
 ```ruby
 require 'prawn-styled-text'
 pdf = Prawn::Document.new
-pdf.styled_text '<h1 style="text-align: center">Just a test</h1>'
+::HtmlHandler.new(pdf).process('<h1 style="text-align: center">Just a test</h1>')
 pdf.render_file 'test.pdf'
 ```
 
@@ -53,29 +53,21 @@ HTML tags:
 
 CSS attributes:
 
-- **background**: for *mark* tag, only 6 hex digits format, # is ignored - ex. `style="background: #FFCC00"`
-- **color**: only 6 hex digits format, # is ignored - ex. `style="color: #FFBB11"`
+- **background**: for *mark* tag, only 3 or 6 hex digits format, ex. `style="background: #FECD08"`
+- **color**: only 3 or 6 hex digits format - ex. `style="color: #FB1"`
 - **font-family**: font must be registered, quotes are optional, ex. `style="font: Courier"`
 - **font-size**: units are ignored - ex. `style="font-size: 20px"`
-- **font-style**: values: *:bold*, *:bold_italic*, *:italic*, *:normal*; string or comma separated strings - ex. `style="font-style: bold, italic"`
-- **height**: for *img* tag, ex. `<img src="test.jpg" style="width: 50%; height: 200"/>`
+- **font-style**: values: *:italic*, *:normal*, ex. `style="font-style: italic"`
+- **font-weight**: values: *:bold*, *:normal*, ex. `style="font-weight: bold"`
+- **height**: for *img* tag, ex. `<img src="image.jpg" style="width: 50%; height: 200"/>`
 - **href**: for *a* tag, ex. `<a href="http://www.google.com/">Google</a>`
 - **letter-spacing**: ex. `style="letter-spacing: 1.5"`
 - **line-height**: heading, units are ignored - ex. `style="line-height: 10"`
 - **margin-left**: units are ignored - ex. `style="margin-left: 15"`
 - **margin-top**: units are ignored - ex. `style="margin-top: 20"`
-- **src**: for *img* tag, ex. `<img src="test.jpg"/>`
+- **src**: for *img* tag, ex. `<img src="image.jpg"/>`
 - **text-align**: ex. `style="text-align: center"`
-- **width**: for *img* tag, ex. `<img src="test.jpg" style="width: 50%; height: 200"/>`
-
-Other custom attributes:
-
-- **dash**: for *hr* tag, dash types, integer or comma separated integers, ex. `<hr style="dash: 4"/>`
-- **image-at**: for *img* tag, origin (0, 0) is left bottom, ex. `<img src="image.jpg" style="image-at: 100, 600" />`
-- **image-position**: for *img* tag, ex. `<img src="image.jpg" style="image-position: center" />`
-- **image-scale**: for *img* tag, ex. `<img src="image.jpg" style="image-scale: 0.3" />`
-- **list-symbol**: for *ul* tag, ex. `<ul style="list-symbol: -">`
-- **mode**: text mode, values: *:clip*, *:fill*, *:fill_clip*, *:fill_stroke*, *:fill_stroke_clip*, *:invisible*, *:stroke*, *:stroke_clip*, ex. `<h3 style="mode: stroke">Stroke text</h3>`
+- **width**: for *img* tag, ex. `<img src="image.jpg" style="width: 50%; height: 200"/>`
 
 See [Prawn documentation](https://github.com/prawnpdf/prawn-table#documentation) for PDF options details.
 

@@ -6,10 +6,6 @@ RSpec.describe 'Headings' do
     [pdf.page.margins[:left], pdf.y - font.ascender - margin_top]
   end
 
-  def font_ascender(font_size:)
-    Prawn::Document.new.font('Helvetica', size: font_size).ascender
-  end
-
   let(:pdf_doc) { TestUtils.styled_text_document(html) }
 
   context 'with some content in an element h1' do
@@ -17,9 +13,10 @@ RSpec.describe 'Headings' do
 
     let(:expected_content) { ['Some content in a element h1'] }
     let(:expected_positions) do
-      [[pdf_doc.page.margins[:left], pdf_doc.y - font_ascender(font_size: 32) - PrawnStyledText::DEF_HEADING_T]]
+      y = pdf_doc.y - TestUtils.font_ascender(font_size: StyleAttributes::SIZES[:h1]) - StyleAttributes::MARGINS[:h1]
+      [[pdf_doc.page.margins[:left], y.round(3)]]
     end
-    let(:expected_font_settings) { [{ name: TestUtils.default_font_family, size: 32 }] }
+    let(:expected_font_settings) { [{ name: TestUtils.default_font_family, size: StyleAttributes::SIZES[:h1] }] }
 
     include_examples 'checks contents, positions and font settings'
   end
@@ -29,9 +26,10 @@ RSpec.describe 'Headings' do
 
     let(:expected_content) { ['Some content in a element h2'] }
     let(:expected_positions) do
-      [[pdf_doc.page.margins[:left], pdf_doc.y - font_ascender(font_size: 24) - PrawnStyledText::DEF_HEADING_T]]
+      y = pdf_doc.y - TestUtils.font_ascender(font_size: StyleAttributes::SIZES[:h2]) - StyleAttributes::MARGINS[:h2]
+      [[pdf_doc.page.margins[:left], y.round(3)]]
     end
-    let(:expected_font_settings) { [{ name: TestUtils.default_font_family, size: 24 }] }
+    let(:expected_font_settings) { [{ name: TestUtils.default_font_family, size: StyleAttributes::SIZES[:h2] }] }
 
     include_examples 'checks contents, positions and font settings'
   end
@@ -41,9 +39,10 @@ RSpec.describe 'Headings' do
 
     let(:expected_content) { ['Some content in a element h3'] }
     let(:expected_positions) do
-      [[pdf_doc.page.margins[:left], pdf_doc.y - font_ascender(font_size: 20) - PrawnStyledText::DEF_HEADING_T]]
+      y = pdf_doc.y - TestUtils.font_ascender(font_size: StyleAttributes::SIZES[:h3]) - StyleAttributes::MARGINS[:h3]
+      [[pdf_doc.page.margins[:left], y.round(3)]]
     end
-    let(:expected_font_settings) { [{ name: TestUtils.default_font_family, size: 20 }] }
+    let(:expected_font_settings) { [{ name: TestUtils.default_font_family, size: StyleAttributes::SIZES[:h3] }] }
 
     include_examples 'checks contents, positions and font settings'
   end
@@ -53,9 +52,10 @@ RSpec.describe 'Headings' do
 
     let(:expected_content) { ['Some content in a element h4'] }
     let(:expected_positions) do
-      [[pdf_doc.page.margins[:left], pdf_doc.y - font_ascender(font_size: 16) - PrawnStyledText::DEF_HEADING_T]]
+      y = pdf_doc.y - TestUtils.font_ascender(font_size: StyleAttributes::SIZES[:h4]) - StyleAttributes::MARGINS[:h4]
+      [[pdf_doc.page.margins[:left], y.round(3)]]
     end
-    let(:expected_font_settings) { [{ name: TestUtils.default_font_family, size: 16 }] }
+    let(:expected_font_settings) { [{ name: TestUtils.default_font_family, size: StyleAttributes::SIZES[:h4] }] }
 
     include_examples 'checks contents, positions and font settings'
   end
@@ -65,9 +65,10 @@ RSpec.describe 'Headings' do
 
     let(:expected_content) { ['Some content in a element h5'] }
     let(:expected_positions) do
-      [[pdf_doc.page.margins[:left], pdf_doc.y - font_ascender(font_size: 14) - PrawnStyledText::DEF_HEADING_T]]
+      y = pdf_doc.y - TestUtils.font_ascender(font_size: StyleAttributes::SIZES[:h5]) - StyleAttributes::MARGINS[:h5]
+      [[pdf_doc.page.margins[:left], y.round(3)]]
     end
-    let(:expected_font_settings) { [{ name: TestUtils.default_font_family, size: 14 }] }
+    let(:expected_font_settings) { [{ name: TestUtils.default_font_family, size: StyleAttributes::SIZES[:h5] }] }
 
     include_examples 'checks contents, positions and font settings'
   end
@@ -77,9 +78,10 @@ RSpec.describe 'Headings' do
 
     let(:expected_content) { ['Some content in a element h6'] }
     let(:expected_positions) do
-      [[pdf_doc.page.margins[:left], pdf_doc.y - font_ascender(font_size: 13) - PrawnStyledText::DEF_HEADING_T]]
+      y = pdf_doc.y - TestUtils.font_ascender(font_size: StyleAttributes::SIZES[:h6]) - StyleAttributes::MARGINS[:h6]
+      [[pdf_doc.page.margins[:left], y.round(3)]]
     end
-    let(:expected_font_settings) { [{ name: TestUtils.default_font_family, size: 13 }] }
+    let(:expected_font_settings) { [{ name: TestUtils.default_font_family, size: StyleAttributes::SIZES[:h6] }] }
 
     include_examples 'checks contents, positions and font settings'
   end

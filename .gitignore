@@ -1,7 +1,5 @@
 _misc/
 coverage/
 
-examples/*.pdf
-
 Gemfile.lock
 .rubocop-*

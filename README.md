@@ -6,9 +6,13 @@
 
 A Prawn PDF component which adds basic HTML support.
 
-**Important**: render HTML documents is not an easy task; only a small set of tags and attributes are supported and complex layouts will not render correctly; if you look for real HTML to PDF conversion please try other gems like WickedPDF.
+---
 
-Please :star: if you like it.
+**<div align="center">Discontinued project</div>**
+
+> Hey, I started this project some years ago with the goal to create a good HTML to PDF renderer. During this time I tried to refactor it in different ways but in the end I preferred to rewrite it from scratch with a new project: [prawn-html](https://github.com/blocknotes/prawn-html). It takes a different approach: no monkey patching, better HTML handling, documents styles, etc. Consider using it in place of **prawn-styled-text**
+
+---
 
 ## Install
 
